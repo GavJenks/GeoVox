@@ -10,4 +10,8 @@ package worldStorage;
  */
 public class Goxel {
     
+    
+    public Goxel(String initialRock){
+        
+    }
 }
