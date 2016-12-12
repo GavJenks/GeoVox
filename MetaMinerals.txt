@@ -1,0 +1,31 @@
+% minerals formed by metamorphic pressures and temperatures.
+
+Sillimanite
+kyanite
+staurolite
+andalusite
+garnets
+"green clinopyroxene"
+serpentine - forms from very mafic igneous rocks + !!!!!WATER!!!!!
+peridote? maybe?
+talc? maybe?
+dunite?
+pyroxenite?
+
+^ seems to actually be a short list, most of the "metamorphic facies" are just special named combos of these few things + igneous minerals that survive. And a lot of the differences are also just texture / grain size / etc., not chemistry.
+
+So:
+1) DO get a list of igneous minerals and chemical minerals that DO break down
+2) otherwise look up the facies for rock types
+3) then work backward to determine any changes that likely occurred
+4) Apply them IF or to the EXTENT allowed by what is physically available there.
+
+largely, other minerals just change size, like calcite crystals and quartz fuse into larger chunks making marbles and quartzites, but chemically still the same.
+
+also, a bunch of igneous minerals are stable under high pressure, so characteristically form metamorphic rock compositions but were nto formed by metamorphosis
+
+feldspars move toward albite
+
+pyroxenes and olivine change to new things more often? I don't know. Really just want a stability range for each, but SO HARD to find.
+
+sigh

@@ -1,42 +1,43 @@
-% This makes a comment line. Empty lines are also ignored.
-% Format is [name of element, one word],[percent portion of the "crust"],[chemical series],[1 for primary, 0 for rare]
+% <-- This makes a comment line. Empty lines are also ignored.
+% Format is [name of element, one word],[atomic mass],[percent portion of the "crust"],% [chemical series],[1 for primary, 0 for rare]
+% Percent doesn't have to add up to 100, the program will rescale it for you.
 % if two elements share a series (simply have the same number here), they can swap in 
-% crystal structures and other implications. Start with 0
+% crystal structures and other implications. Start with 1 and go up unless sharing a series already written.
 % You have UP TO EIGHT primary elements, flagged with a 1 parameter at the end.
 % You have UP TO SIXTEEN rare elements as well, flagged with a 0 parameter at the end.
-% Primary elements are tracked during world generation for rock forming minerals, while
-% rare elements are tracked in a loose "bag" of elements until the end of the simulation, for gems, etc.
+% Primary elements participate in mineral and rock chemistry during simulation, affecting erosion, magma, etc. While
+% rare elements are tracked in a loose "bag" of elements that can form minerals still, but the elements and minerals do not % significantly interact with the world until the end of the simulation, for gems, etc.
 % For rares, it's better to choose elements relevant to your final game or use case, such as strategic metals, not
 % necessarily elements in order of exact abundance.
 
 % Top 8:
 
-Oxygen,46,0,1
-Silicon,27,1,1
-Aluminum,8.2,2,1
-Iron,6.3,3,1
-Calcium,5,4,1
-Sodium,2.3,5,1
-Potassium,1.5,5,1
-Magnesium,2.9,4,1
+Oxygen,16,46,1
+Silicon,28,27,1
+Aluminum,27,8.2,1
+Iron,56,6.3,1
+Calcium,40,5,1
+Magnesium,24,2.9,1
+Sodium,23,2.3,1
+Potassium,39,1.5,1
 
-% Rares:
+% 16 Rares:
 
-Titanium,0.66,6,0
-Carbon,0.18,1,0
-Phosphorus,0.1,7,0
-Manganese,0.11.8,0
-Fluorine,0.054,9,0
-Barium,0.034,4,0
-Sulfur,0.042,0,0
-Nickel,0.009,10,0
-Zinc,0.0079,11,0
-Copper,0.0068,12,0
-Lead,0.001,1,0
-Tin,0.00022,1,0
-Uranium,0.00018,13,0
-Silver,0.000008,12,0
-Mercury,0.0000067,11,0
-Gold,0.00000031,12,0
+Titanium,48,0.66,0
+Carbon,12,0.18,0
+Phosphorus,31,0.1,0
+Manganese,55,0.11,0
+Fluorine,19,0.054,0
+Barium,137,0.034,0
+Sulfur,32,0.042,0
+Nickel,59,0.009,0
+Zinc,65,0.0079,0
+Copper,64,0.0068,0
+Lead,207,0.001,0
+Tin,119,0.00022,0
+Uranium,238,0.00018,0
+Silver,108,0.000008,0
+Mercury,201,0.0000067,0
+Gold,197,0.00000031,0
 
 

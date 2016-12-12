@@ -9,7 +9,7 @@ package literals;
  * @author Gavin
  */
 public class Element {
-    int elementID;
-    int[] sameSeriesElements; //used for determining swapping in solid solutions and similar chemistry
-    
+    public int elementID;
+    public int atomicWeight;
+    public double targetCrustPercent;
 }

@@ -1,0 +1,74 @@
+% Format: [ID starting at 1],[Type, igneous = 0, _____],[Name],
+% [hardness in Mohs decimal values allowed],
+% [Melting point 0-32767 in Celsius],[Specific Gravity in decimal compared to % water],then 24 values 
+% separated by commas for how many atoms (0-127) are included in this mineral for each 
+% of the 8 primary elements in elements.txt then how many of the 16 rare element atoms, 
+% in order written in that file.
+% UP TO 31 minerals here, they are tracked in detail and are
+% the ones most important in the engine. Choose the most relevant rock forming minerals.
+% Minerals important for life but not rock forming can be specified later as important,
+% etc. Right now, this is about rocks most of all.
+% More minerals to be calculated at the end of the simulation for ores and gems, etc. % are in the other file RareMinerals.txt
+
+% Olivine endmembers Mg, Fe, and Ca endmembers:
+
+1,0,Forsterite,6.5,1890,3.27,4,1,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2,0,Fayalite,6.5,1205,4.39,4,1,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+3,0,Larnite,6,1420,3.34,4,1,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+
+% Feldspars, Na, K, and Ca-based:
+
+4,0,Albite,6.25,1120,2.62,8,3,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+5,0,Orthoclase,6.25,1250,2.55,8,3,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+6,0,Anorthite,6.25,1500,2.75,8,3,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+
+% Micas, first two are Biotite endmembers (Fe,Mg):
+
+7,0,Annite,2.75,1300,3.34,12,3,1,3,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+8,0,Phlogopite,2.25,1300,2.83,12,3,1,0,0,3,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+9,0,Muscovite,2.25,1400,2.83,12,3,3,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+
+% Pyroxenes, Fe, Mg, and Ca-based:
+
+10,0,Ferrosilite,5.5,1830,3.95,3,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+11,0,Enstatite,5.5,1580,3.20,3,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+12,0,Wollastonite,5,1540,2.91,3,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+
+% Amphiboles, Mg and Fe
+
+13,0,Anthophyllite,5.5,1450,3.21,24,8,0,0,0,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+14,0,Grunerite,5.5,1150,3.45,24,8,0,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+
+15,0,Quartz,7,1700,2.65,2,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+
+% --------------------------------------
+% That's 15 for igneous, room for 16 more for metamorphic, organic, evaporites
+% --------------------------------------
+
+
+% Sillimanite, kyanite, andalusite are all Al2SiO5 polymorphs, probably don't care about those.
+% Staurolite  -- just sort of generic high grade metamineral, Fe/Mg/Mn/Zn substitutes.
+% Garnet --> weird situation, TONS of versions, but overall important rock forming, could do 
+%	ca,mg,fe only? (grossular, pyrope, almandine)
+% Water
+% CLAYS:
+% Serpentine Fe, kaolinite is Al version of same thing, talc is Mg version
+
+%------7, 9 more:
+% 
+
+% Halite
+% Gypsum
+% Calcite
+...?
+% Graphite, peat, coals, lignite, not quite same as above stuff.
+
+^ that would be 15 if all compressed down using method described below! Could still fit in 4bits! OR allow for 5 bits, and reduce concentration space to 7 bits (0-127 unsigned),leaving plenty of more room for other stuff.
+
+
+
+% Alternative much more condensed version:
+% [Group name],[num members],[chem series of variable],[24 chems, fill in ALL of the group's % variable members, and the program will only read the relevant one at any given time, using % chemseries.txt],X times:[Name of group member],[3 physical stats for that one]
+
+^ How does that jive with storage of goxels? A lot of important room in the mienral list could get gummed up with minor variants between series members. If investing another long int, could do "total chemistry" + "Not-mineralized chemistry", and thus IMPLY info about minerals? OR just invest that same space in 5 more minerals? Sigh. must be a smarter way.
+

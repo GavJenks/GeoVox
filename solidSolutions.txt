@@ -1,0 +1,10 @@
+% Format: [Name of group of minerals],[chemical series# from chemicalseries.txt],
+% then a list of members.
+% program will treat these as able to swap and smooth out the relevant ions with one 
+% another, over verrrry long periods of time (less so when very hot)
+
+Feldspar,1,Albite,Orthoclase,Anorthite
+Olivine,2,Forsterite,Fayalite,Larnite
+Biotite,3,Annite,Phlogopite
+Pyroxene,2,Ferrosilite,Enstatite,Wollastonite
+Amphibole,3,Anthophyllite,Grunerite

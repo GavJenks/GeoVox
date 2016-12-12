@@ -1,0 +1,18 @@
+% These are used for interpolating advanced properties. For example, I have no idea what
+% the coloration overall would be of a 30% hornblende, 15% quartz, 5% mica.... whatever
+% rock. But with reference rocks of known mineral combinations, we can form anchor
+% points, make an interpolated lookup table, and guess at the in between values.
+
+% The most important advanced property is "what metamorphic pressures do", since that
+% effectively acts at the rock level, not the mineral level, like most igneous things.
+
+% [Name],[Grain size 0-15],[List of mineral names followed by percentages in 0-1 format]
+
+Komatite,0,Fayalite,0.2,Forsterite,0.5,Larnite,0.3
+Basalt,0,Enstatite,0.5,Fayalite,0.15,Anorthite,0.3,Albite,0.05
+Andesite,0,Anthophyllite,0.3,Anorthite,0.5,Albite,0.2
+Rhyolite,0,Grunerite,0.07,Albite,0.35,Anorthite,0.05,Quartz,0.4,Orthoclase,0.2
+Peridotite,15,Fayalite,0.2,Forsterite,0.5,Larnite,0.3
+Gabbro,15,Enstatite,0.5,Fayalite,0.15,Anorthite,0.3,Albite,0.05
+Diorite,15,Anthophyllite,0.3,Anorthite,0.5,Albite,0.2
+Granite,15,Grunerite,0.07,Albite,0.35,Anorthite,0.05,Quartz,0.4,Orthoclase,0.2

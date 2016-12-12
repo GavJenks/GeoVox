@@ -1,0 +1,14 @@
+% Format is just [number of the series starting at 1],[list of any number of integers 
+% all fitting on one line of the document, corresponding to the ID #s of the elements
+% in that series. ID #s are the order of elements written in elements.txt starting at 0]
+% so a series "5,7,8" is "Series #5, where sodium and potassium can be exchanged" in the
+% default settings, for example.
+
+%Ca, Na, K, as in feldspar solid solution
+1,5,7,8
+
+%Fe, Mg, Ca, as in pyroxene solid solution
+2,4,5,6
+
+%Fe, Mg only, such as in biotites
+3,4,6
