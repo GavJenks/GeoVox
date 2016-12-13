@@ -13,5 +13,9 @@ import java.io.Serializable;
  * @author Gavin
  */
 public class Plate  implements Serializable{
+    public boolean[] columnMembers;
     
+    public Plate(int numColumnsInWorld){
+        columnMembers = new boolean[numColumnsInWorld]; //defaults full of false;
+    }
 }

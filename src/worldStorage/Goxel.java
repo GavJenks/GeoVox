@@ -5,6 +5,7 @@
 package worldStorage;
 
 import java.io.Serializable;
+import utility.ElementCalculator;
 
 /**
  *
@@ -34,11 +35,13 @@ public class Goxel implements Serializable{
     short temperature = 1200; //in Celsius, signed
     byte pressure; //positive values are in kilobars, negative values represent positive single bars.   So 5 = 5,000 bars, -3 = 3 bars.
     byte fraction = 0; //signed. For igneous goxels, this is in 1% increments the portion of the goxel molten. for sedimentary, portion eroded away, perhaps, etc.
-    byte specificGravity = ; //unsigned 0-255, in units of 1/10ths of the gravity of water. So normal 6.52 = 65 here. Water = 10 here, etc. Densest element in world is osmium at 22.48, so this handles any natural thing I think.
+    byte specificGravity = 29; //unsigned 0-255, in units of 1/10ths of the gravity of water. So normal 6.52 = 65 here. Water = 10 here, etc. Densest element in world is osmium at 22.48, so this handles any natural thing I think.
 
+    //TODO: replace specific gravity, element, minerl stuff default settings with elementCalculator calls, all proper and procedural.
     //RAM tally: 1 + 8 + 4 + 14 + 2 + 12(object overhead) = 40 bytes, rounds to 40.
     
     public Goxel() { //assumes solid basalt with all the above default values
+        //byte[] defaultElements = ElementCalculator.byMassFromMinerals(minerals, fractions);
     }
     
     public void setPressure(byte pressure){
