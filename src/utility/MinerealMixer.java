@@ -12,7 +12,7 @@ import java.util.Map;
  *
  * @author Gavin
  */
-public class TriangleMixer {
+public class MinerealMixer {
     // A at bottom left of triangle, B at top, C at bottom right, points counter from bottom left toward right then up one row, etc.
         private static final byte[][] triangle = new byte[][]{{100,0,0},{75,0,25},{50,0,50},{25,0,75},{0,0,100},{84,8,8},{58,8,33},{33,8,58},{8,8,84},
             {67,17,17},{42,17,42},{17,17,67},{75,25,0},{50,25,25},{25,25,50},{0,25,75},{58,33,8},{33,33,33},{8,33,58},{42,42,17},{17,42,42},{50,50,0},

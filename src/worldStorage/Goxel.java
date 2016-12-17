@@ -5,7 +5,7 @@
 package worldStorage;
 
 import java.io.Serializable;
-import utility.ElementCalculator;
+import utility.ChemCalculator;
 
 /**
  *
@@ -14,8 +14,21 @@ import utility.ElementCalculator;
 public class Goxel implements Serializable{
 //comments are for rock goxels for now. For other types like bio or ocean, many of these fields could have alternate meanings.
 
-    byte type = 0; //type of goxel, such as igneous, sedimentary, ocean, biological, whatever.
-    //0 = igneous for now.
+    byte type = 3; //type of goxel
+    //**ALL TYPES DEFINED IN FUTURE MUST ADHERE TO RANGES BELOW** Other logic elsewhere relies on these.
+    //**range 0 reserved for "air" don't know if ever will use, usually Atmosphere object assumed to just be above everything.
+    //**range 1-30 reserved for solid rock of any type held together strongly/covalently/as crystals. Includes ice.
+    //**range 31-60 reserved for any molten or semi-molten rock types (must always be at least semi-molten to qualify, upon solidification always switch types to 1-30 range)
+    //**range 61-80 reserved for any pure LIQUID (not ice) water (or other planet's primary ocean forming liquid) types, including biological water types (where info fields used for species, etc.)
+    //**range 81-120 reserved for any special terrestrial climate/landscape surface types of mixed composition, rivers, loose sand deserts, etc. INCLUDING terrestrial biological types
+    //**range 120-127 reserved for bizarre miscellaneous types, but be aware that various logic areas in the code may ignore them. Avoid using if possible.
+    //**NOTE that -1 to -128 is also available if need be. Logic will avoid assuming positive ranges in main code to allow for this.
+    
+    //0 = air if ever relevant,
+    //1 = ice, whole goxel's composition (but fraction = erosion / partial air)
+    //2 = igneous solid (fraction = erosion)
+    //31 = igneous molten or semi-molten (fraction = amount solidified)
+    //61 = default ocean
     
     //########TODO: replace with actual procedural element parser
     byte element0 = 102-128; //Oxygen 0-255 concentration BY MASS of element 1 (default Oxygen) in this goxel, assume for now numbers should add up to 255 unless rares present.
@@ -33,7 +46,7 @@ public class Goxel implements Serializable{
     short mineral4;
     short mineral5;
     short temperature = 1200; //in Celsius, signed
-    byte pressure; //positive values are in kilobars, negative values represent positive single bars.   So 5 = 5,000 bars, -3 = 3 bars.
+    short pressure; //in bars, signed.
     byte fraction = 0; //signed. For igneous goxels, this is in 1% increments the portion of the goxel molten. for sedimentary, portion eroded away, perhaps, etc.
     byte specificGravity = 29; //unsigned 0-255, in units of 1/10ths of the gravity of water. So normal 6.52 = 65 here. Water = 10 here, etc. Densest element in world is osmium at 22.48, so this handles any natural thing I think.
 
@@ -86,8 +99,10 @@ public class Goxel implements Serializable{
             return 0;
         }
     }
-    
-    public float specificGravity(){
-        return specificGravity/10f;
+        
+    public byte getBrittle(){
+        //brittleness is not a field. This is for custom algorithms for things with odd values, like "river" or whatnot.
+        //TODO: implement.
+        return -128;
     }
 }

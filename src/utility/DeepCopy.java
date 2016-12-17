@@ -25,7 +25,7 @@ public class DeepCopy {
         ObjectInputStream in = new ObjectInputStream(bis);
         copied = (Object) in.readObject();
         } catch (Exception e){
-            
+            e.printStackTrace();
         }
         return copied;
     }

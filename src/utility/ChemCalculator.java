@@ -11,7 +11,7 @@ import literals.RockDictionary;
  *
  * @author Gavin
  */
-public class ElementCalculator {
+public class ChemCalculator {
 
     public static byte[] byMassFromMinerals(Mineral[] minerals, float[] fractions) {
         int totalAtomicWeight = 0;

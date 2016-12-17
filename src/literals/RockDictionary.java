@@ -31,7 +31,7 @@ public class RockDictionary {
                 for (int i = 0; i < 16;i++){
                     rareMinerals[i] = Byte.parseByte(parts[i+15]);
                 }
-                minerals.add(new Mineral(Integer.parseInt(parts[1]),Integer.parseInt(parts[0]),parts[2],Float.parseFloat(parts[3]),Short.parseShort(parts[4]),Float.parseFloat(parts[5]),commonMinerals,rareMinerals));
+                minerals.add(new Mineral(Integer.parseInt(parts[1]),Integer.parseInt(parts[0]),parts[2],Float.parseFloat(parts[3]),Short.parseShort(parts[4]),Byte.parseByte(parts[5]),Float.parseFloat(parts[6]),commonMinerals,rareMinerals));
             }
         }
         }catch (IOException e){
