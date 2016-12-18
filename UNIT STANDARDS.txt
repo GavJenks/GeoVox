@@ -1,0 +1,21 @@
+Default "SI" Units in GeoVox
+
+Note: several units are defined vaguely, referencing aspects of goxels. This is because goxels have 
+no formal definition in terms of their dimensions, so these units must be interpreted dynamically if you 
+ever cared to figure out their exact SI values. For the engine, the contingent definitions are good enough.
+
+Force
+	Pressure: 		short	bars
+	Force: 			short	amount of force exerted by one bar over the face of a goxel
+	Deformation Force: 	short	number of force units where permanent deformation occurs
+	Brittleness: 		short	number of force units where snapping occurs 
+	Hardness: 		float	Moh's scale
+
+Thermodynamics
+	Temperature: 		short	degrees C
+	Heat: 			short	Joules * [however many joules will heat one goxel of pure water 1 degree C]
+	Specific Heat: 		byte	integers equal to 1/10ths of water (so water = 10, everything else proportional)
+
+Distance: 			short	goxel edge lengths
+
+Concentrations of anything	byte	integer value of 1% increments. Includes minerals, common elements, rare elements, etc.

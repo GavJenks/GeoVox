@@ -21,22 +21,24 @@ public class GeoVox {
      */
     public static void main(String[] args) {
         
+        //0 to 9  size 10
+        B.ug(-1%10); //+10 since negative
+        B.ug(-11%10); //+10 since negative
+        B.ug(11%10);
+        B.ug(0%10);
+        B.ug(-20%10);
         
+        //Memory feedback
         Runtime rt = Runtime.getRuntime();
-        long totalMem = rt.totalMemory();
         long maxMem = rt.maxMemory();
-        long freeMem = rt.freeMemory();
         double megs = 1048576.0;
-
-        System.out.println ("Total Memory: " + totalMem + " (" + (totalMem/megs) + " MiB)");
         System.out.println ("Max Memory:   " + maxMem + " (" + (maxMem/megs) + " MiB)");
-        System.out.println ("Free Memory:  " + freeMem + " (" + (freeMem/megs) + " MiB)");
     
-        //sizes must be multiples of 8
-        short xSize = 1000; //should be specified eventually in a GUI by user, etc., hence just hardcoding for now. This is in goxel sized units.
-        short ySize = 1000;
+        //Hardcoded paramsfor now. 
+        short xSize = 1600; //Sizes must be multiples of 8
+        short ySize = 800;
         B.ug(System.currentTimeMillis());
-        World world = new World(xSize, ySize, 5, 2, 17);
+        World world = new World(xSize, ySize, 2, 5, 20);
         B.ug(System.currentTimeMillis());
         
         //Graphics

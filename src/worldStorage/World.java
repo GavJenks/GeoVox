@@ -6,7 +6,7 @@ package worldStorage;
 
 import java.util.HashMap;
 import utility.B;
-import utility.WrapMath;
+import utility.Wrap;
 
 /**
  *
@@ -25,7 +25,8 @@ public class World {
     //almost certainly faster than overwriting columns constantly and storing them at absolute coords.
     public static int[][] voronoi; //closest plume to each coordinate pair.
     public static int[][] columns; //stores the ID # of a column at each coord. The columns move around
-    public static int[][] score; //i.e. for pathfinding
+    public static short[][] score; //i.e. for pathfinding
+    public static short[][] plumeHeat; //contribution of heat from plumes, to be added each turn to columns. units = "however many joules heat up one goxel of water 1 degree C"
     public static HashMap<Integer, Column> columnMap = new HashMap<Integer, Column>(); //use the id to get the actual column here.
     public static Plate[] plates = new Plate[1]; // stay below short number of plates.
     public static HashMap<Integer, Short[]> plumes = new HashMap<Integer, Short[]>(); //centers of mantle convection cells.
@@ -81,7 +82,7 @@ public class World {
                 int bestPlume = -1;
                 for (int p = 0; p < plumes.size(); p++) {
                     Short[] pCoords = plumes.get(p);
-                    double tempDistance = WrapMath.dist(x, y, pCoords[0], pCoords[1]);
+                    double tempDistance = Wrap.dist(x, y, pCoords[0], pCoords[1]);
                     if (tempDistance < bestDistance) {
                         bestDistance = tempDistance;
                         //TODO: set heat gain here AND vectors are faster futher from plume? Only if plumes do move every tick though, and will have better algorithm then anyway.
