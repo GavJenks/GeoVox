@@ -21,20 +21,13 @@ public class GeoVox {
      */
     public static void main(String[] args) {
         
-        //0 to 9  size 10
-        B.ug(-1%10); //+10 since negative
-        B.ug(-11%10); //+10 since negative
-        B.ug(11%10);
-        B.ug(0%10);
-        B.ug(-20%10);
-        
         //Memory feedback
         Runtime rt = Runtime.getRuntime();
         long maxMem = rt.maxMemory();
         double megs = 1048576.0;
         System.out.println ("Max Memory:   " + maxMem + " (" + (maxMem/megs) + " MiB)");
     
-        //Hardcoded paramsfor now. 
+        //Hardcoded params for now. 
         short xSize = 1600; //Sizes must be multiples of 8
         short ySize = 800;
         B.ug(System.currentTimeMillis());
@@ -52,21 +45,26 @@ public class GeoVox {
         
         //threads
         
-        //draw plumes
+        //draw plumes, use voronoi algorithm
+        World.slowAssVoronoi();
+        
+        
+        //update heat for a few ticks (must implement atmosphere cooling thing, and maybe mantle, simplistic heat only versions ok for now
+        
+        //crack 2 faults at least (need threshold system built into A*. Also need thing that takes path and assigns plates meaningfully, a path is not a boundary).
+        
+        //calc vectors and start doing collision logic (can ignore volcanism for now).
+        
+        //recalc cracks every so often, get graphics working for the cycle. POST BLOG
+        
+        //SOON: multithread the A* searches, like if searching 100 random points each tick, give each one a thread, for example.
         
         
         
-    /*
-        Window window = new Window();
-        BufferedImage canvas = new BufferedImage(World.xSize, World.ySize, BufferedImage.TYPE_INT_ARGB);
-    
-        window.fill(canvas);
-        try{
-        Thread.sleep(5);
-        }catch (Exception e){
         
-        }
-*/
+        
+        
+       
         //init swing GUI
         //make hotspots
         //voronoi those hotspots

@@ -22,6 +22,8 @@ public class Column  implements Serializable{
     public short vectorY = 0;
     
     //sums:
+    public short mass;
+    public float density;
     public short avgTemp;
     public short avgPressure;
     public byte avgSpecificGravity;
@@ -30,7 +32,7 @@ public class Column  implements Serializable{
     
     public Column(int initialThickness){
       //implement rock type from files
-      goxels = new Goxel[initialThickness];
+      goxels = new GoxelIgneousSolid[initialThickness];
       for (int g = 0; g < initialThickness; g++){
           goxels[g] = new Goxel();
           //pressure based on assumption of basalt, just like default constructor:
@@ -43,7 +45,11 @@ public class Column  implements Serializable{
         int sumTemp = 0;
         int sumPressure = 0;
         int sumBrittle = 0;
+        int sumMass = 0;
         for (int g = 0; g < goxels.length; g++){
+            for (int m = 0; m < 5; m++){
+                
+            }
             sumSpecificGravity += goxels[g].specificGravity;
             sumTemp += goxels[g].temperature; //could multiply by fraction / 127? Slower perhaps, see how fast it runs, may not be important.
             sumPressure += goxels[g].pressure;
@@ -63,5 +69,7 @@ public class Column  implements Serializable{
         avgPressure = (short)(sumPressure/denominator);
         avgSpecificGravity = (byte)(sumSpecificGravity/denominator);
         avgBrittle = (short)(sumBrittle/denominator);
+        mass = (short)(sumMass/denominator);
+        density = mass / (float)(goxels.length);
     }
 }

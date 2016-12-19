@@ -5,13 +5,14 @@
 package worldStorage;
 
 import java.io.Serializable;
-import utility.ChemCalculator;
+import java.util.ArrayList;
+import literals.RockDictionary;
 
 /**
  *
  * @author Gavin
  */
-public class Goxel implements Serializable{
+public class Goxel implements Serializable {
 //comments are for rock goxels for now. For other types like bio or ocean, many of these fields could have alternate meanings.
 
     byte type = 3; //type of goxel
@@ -23,22 +24,21 @@ public class Goxel implements Serializable{
     //**range 81-120 reserved for any special terrestrial climate/landscape surface types of mixed composition, rivers, loose sand deserts, etc. INCLUDING terrestrial biological types
     //**range 120-127 reserved for bizarre miscellaneous types, but be aware that various logic areas in the code may ignore them. Avoid using if possible.
     //**NOTE that -1 to -128 is also available if need be. Logic will avoid assuming positive ranges in main code to allow for this.
-    
+
     //0 = air if ever relevant,
     //1 = ice, whole goxel's composition (but fraction = erosion / partial air)
     //2 = igneous solid (fraction = erosion)
     //31 = igneous molten or semi-molten (fraction = amount solidified)
     //61 = default ocean
-    
     //########TODO: replace with actual procedural element parser
-    byte element0 = 102-128; //Oxygen 0-255 concentration BY MASS of element 1 (default Oxygen) in this goxel, assume for now numbers should add up to 255 unless rares present.
-    byte element1 = 52-128; //Silicon
-    byte element2 = 0-128; //Aluminum
-    byte element3 = 33-128; //Iron
-    byte element4 = 47-128; //Calcium
-    byte element5 = 23-128; //Magnesium
-    byte element6 = 0-128; //Sodium
-    byte element7 = 0-128; //Potassium
+    byte byte0 = 102 - 128; //Oxygen 0-255 concentration BY MASS of element 1 (default Oxygen) in this goxel, assume for now numbers should add up to 255 unless rares present.
+    byte byte1 = 52 - 128; //Silicon
+    byte byte2 = 0 - 128; //Aluminum
+    byte byte3 = 33 - 128; //Iron
+    byte byte4 = 47 - 128; //Calcium
+    byte byte5 = 23 - 128; //Magnesium
+    byte byte6 = 0 - 128; //Sodium
+    byte byte7 = 0 - 128; //Potassium
     int rareChemistry = 0; //the rarer 16 elements, 2 BITS each so 0-3 for each. Assume that each one of these is the same fraction as one of the 255's above (~0.39%) so max rare % is a bit above 1% of goxel each
     short mineral1; //4 bits of mineral category GROUP code, 5 bits of proportions of group members (line or triangle distributino), 7 bits of 0-127 total group presence in goxel
     short mineral2;
@@ -52,57 +52,52 @@ public class Goxel implements Serializable{
 
     //TODO: replace specific gravity, element, minerl stuff default settings with elementCalculator calls, all proper and procedural.
     //RAM tally: 1 + 8 + 4 + 14 + 2 + 12(object overhead) = 40 bytes, rounds to 40.
-    
     public Goxel() { //assumes solid basalt with all the above default values
         //byte[] defaultElements = ElementCalculator.byMassFromMinerals(minerals, fractions);
     }
-    
-    public void setPressure(byte pressure){
+
+    public void setPressure(byte pressure) {
         this.pressure = pressure;
     }
 
-    public double elementToPercent(byte elementIndex) {
-        switch (elementIndex) {
-            case 0:
-                return (this.element0+128) / 255d;
-            case 1:
-                return (this.element1+128) / 255d;
-            case 2:
-                return (this.element2+128) / 255d;
-            case 3:
-                return (this.element3+128) / 255d;
-            case 4:
-                return (this.element4+128) / 255d;
-            case 5:
-                return (this.element5+128) / 255d;
-            case 6:
-                return (this.element6+128) / 255d;
-            case 7:
-                return (this.element7+128) / 255d;
-        }
-        return -1;
+    public ArrayList<MineralInstance> getMineralInstances() {
+        ArrayList<MineralInstance> instances = new ArrayList<MineralInstance>();
+        byte groupID = (byte) (mineral1 >> 12);
+        byte proportion = (byte) ((mineral1 & 3968) / 100f);
+        float mass = RockDictionary.minerals.get(groupID).specificGravity * (proportion / 100f);
+        instances.add(new MineralInstance(groupID, proportion, mass));
+        
+        groupID = (byte) (mineral2 >> 12);
+        proportion = (byte) ((mineral2 & 3968) / 100f);
+        mass = RockDictionary.minerals.get(groupID).specificGravity * (proportion / 100f);
+        instances.add(new MineralInstance(groupID, proportion, mass));
+        
+        groupID = (byte) (mineral3 >> 12);
+        proportion = (byte) ((mineral3 & 3968) / 100f);
+        mass = RockDictionary.minerals.get(groupID).specificGravity * (proportion / 100f);
+        instances.add(new MineralInstance(groupID, proportion, mass));
+        
+        groupID = (byte) (mineral4 >> 12);
+        proportion = (byte) ((mineral4 & 3968) / 100f);
+        mass = RockDictionary.minerals.get(groupID).specificGravity * (proportion / 100f);
+        instances.add(new MineralInstance(groupID, proportion, mass));
+        
+        groupID = (byte) (mineral5 >> 12);
+        proportion = (byte) ((mineral5 & 3968) / 100f);
+        mass = RockDictionary.minerals.get(groupID).specificGravity * (proportion / 100f);
+        instances.add(new MineralInstance(groupID, proportion, mass));
+
+        return instances;
     }
 
     public double rareToPercent(int rareElementIndex) { //index 0-15
         int temp = rareChemistry;
-        temp = (temp>>(15-(rareElementIndex*2)));
-        temp = temp&(int)3;
+        temp = (temp >> (15 - (rareElementIndex * 2)));
+        temp = temp & (int) 3;
         return temp / (255.0d);
     }
-    
-    public int pressureToBars(){
-        if (pressure > 0){
-            return pressure*1000;
-        }else if (pressure < 0){
-            return pressure*-1;
-        } else {
-            return 0;
-        }
-    }
-        
-    public byte getBrittle(){
-        //brittleness is not a field. This is for custom algorithms for things with odd values, like "river" or whatnot.
-        //TODO: implement.
-        return -128;
+
+    public byte getBrittle() {
+        return 0;
     }
 }

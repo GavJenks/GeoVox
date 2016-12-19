@@ -5,6 +5,7 @@
 package utility;
 
 import literals.Mineral;
+import literals.Rock;
 import literals.RockDictionary;
 
 /**
@@ -13,6 +14,11 @@ import literals.RockDictionary;
  */
 public class ChemCalculator {
 
+    //need a massByElements. DON'T need a mass by minerals, already pretty simply done in goxel.
+    
+    
+    //This gives you the loadout of common and rare elements by percent, if the whole goxel were composed of this one set of minerals in these fractions.
+    //THIS IS PROBABLY WRONG, TODO: fix to use two-proportion-tiered system in place currently.
     public static byte[] byMassFromMinerals(Mineral[] minerals, float[] fractions) {
         int totalAtomicWeight = 0;
         int[] totalAtomicWeights = new int[24];
@@ -30,10 +36,15 @@ public class ChemCalculator {
             }
         }
         byte[] result = new byte[24];
-        double weightPerElementUnit = totalAtomicWeight / 256d;
+        double weightPerElementUnit = totalAtomicWeight / 100d;
         for (int e = 0; e < 24; e++) { //per element
-            result[e] = (byte)((totalAtomicWeights[e]/weightPerElementUnit)-128);
+            result[e] = (byte)((totalAtomicWeights[e]/weightPerElementUnit));
         }
         return result;
+    }
+    
+    //same bt for a rock type
+    public static byte[] byMassFromMinerals(Rock rock) {
+        return byMassFromMinerals(rock.getMinerals(), rock.getFractions());
     }
 }

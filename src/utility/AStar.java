@@ -27,9 +27,8 @@ public class AStar {
                 tempCoords.add(new Coord(x, y));
             }
         }
-        fScore = (Wrap.gradientCircle(tempCoords, start));
-        Wrap.sortScoredCoords(fScore); //fScore now stores all points' distances Euclidean (torus-wrapped) from the start point, which is the default guess heuristic of A*
-        //NOTE: IT WOULD BE BETTER IF THE HEURISTIC WAS AN OVAL SLANTED TOWARD THE GOAL INSTEAD OF AN EXPANDING CIRCLE
+        fScore = (Wrap.gradientOval(tempCoords, start, goal));
+        Wrap.sortScoredCoords(fScore); //fScore now stores all points' distances Euclidean (torus-wrapped) from the start point + to the end point, which is the default guess heuristic of A*
     }
 
     private ArrayList<Coord> findPath(Coord start, Coord goal) {

@@ -30,6 +30,14 @@ public class Wrap {
         }
         return results;
     }
+    
+    public static ArrayList<ScoredCoord> gradientOval(ArrayList<Coord> coords, Coord center1, Coord center2) {
+        ArrayList<ScoredCoord> results = new ArrayList<ScoredCoord>();
+        for (Coord c:coords){
+            results.add(new ScoredCoord(c.xCoord,c.yCoord,(short)(dist(c,center1) + dist(c,center2))));
+        }
+        return results;
+    }
 
     public static void sortScoredCoords(ArrayList<ScoredCoord> coords) {
         Collections.sort(coords,new ScoredCoordsComparator());
