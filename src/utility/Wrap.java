@@ -62,4 +62,16 @@ public class Wrap {
             c.yCoord = (short) (c.yCoord + World.ySize);
         }
     }
+    
+    public static ArrayList<Coord> getNeighbors(Coord center) {
+        ArrayList<Coord> neighbors = new ArrayList<Coord>();
+        for (short x = (short) (center.xCoord - 1); x < center.xCoord + 2; x++) {
+            for (short y = (short) (center.yCoord - 1); y < center.yCoord + 2; y++) {
+                Coord temp = new Coord(x, y);
+                Wrap.fix(temp);
+                neighbors.add(temp);
+            }
+        }
+        return neighbors;
+    }
 }

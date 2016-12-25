@@ -10,7 +10,20 @@ package literals;
  */
 public class Element {
     public int elementID;
+    public String elementName;
     public int atomicWeight;
-    public int specificGravity; //i.e. handwavey approximation of mass contribution gotten by taking atomic weight / molar mass of water 18
-    public double targetCrustPercent;
+    public float targetMantlePercent;
+    public byte targetMantleExponent;
+    public float targetCrustPercent;
+    public byte targetCrustExponent;
+    
+    public Element (int elementID, String elementName, int atomicWeight, float percentInMantle, byte mantleExponent, float percentInCrust, byte crustExponent){
+        this.elementID = elementID;
+        this.elementName = elementName;
+        this.atomicWeight = atomicWeight;
+        this.targetMantlePercent = targetMantlePercent;
+        this.targetMantleExponent = targetMantleExponent;
+        this.targetCrustPercent = targetCrustPercent;
+        this.targetCrustExponent = targetCrustExponent;
+    }
 }

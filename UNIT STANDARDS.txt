@@ -4,7 +4,7 @@ Note: several units are defined vaguely, referencing aspects of goxels. This is 
 no formal definition in terms of their dimensions, so these units must be interpreted dynamically if you 
 ever cared to figure out their exact SI values. For the engine, the contingent definitions are good enough.
 
-Force
+Forces
 	Pressure: 		short	bars
 	Force: 			short	amount of force exerted by one bar over the face of a goxel
 	Deformation Force: 	short	number of force units where permanent deformation occurs
@@ -13,9 +13,12 @@ Force
 
 Thermodynamics
 	Temperature: 		short	degrees C
-	Heat: 			short	Joules * [however many joules will heat one goxel of pure water 1 degree C]
+	Heat: 			short	1 unit = however many joules will heat one goxel of pure water 1 degree C
 	Specific Heat: 		byte	integers equal to 1/10ths of water (so water = 10, everything else proportional)
 
 Distance: 			short	goxel edge lengths
-
-Concentrations of anything	byte	integer value of 1% increments. Includes minerals, common elements, rare elements, etc.
+Mass:				float	units of mass equal to one goxel of pure water at sea level
+Specific gravity, solids/liq:	byte 	Similar to specific heat, 1/10ths of water's density
+Specific gravity, gas:		byte	Same as above but reference material is pure water vapor (modern air becomes 16, xenon 73)
+Concen. of mins, elements	byte	integer value of 1% increments.
+Concen. of rare elements	2 bits	Scales based on the element's info, always 0,1,2,3 x [some constant]

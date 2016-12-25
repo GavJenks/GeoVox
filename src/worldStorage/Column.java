@@ -4,6 +4,8 @@
  */
 package worldStorage;
 
+import goxels.Goxel;
+import goxels.GoxelRockSolid;
 import java.io.Serializable;
 
 /**
@@ -32,11 +34,11 @@ public class Column  implements Serializable{
     
     public Column(int initialThickness){
       //implement rock type from files
-      goxels = new GoxelIgneousSolid[initialThickness];
+      goxels = new GoxelRockSolid[initialThickness];
       for (int g = 0; g < initialThickness; g++){
-          goxels[g] = new Goxel();
+          goxels[g] = new GoxelRockSolid();
           //pressure based on assumption of basalt, just like default constructor:
-          goxels[g].setPressure((byte)((g*((byte)World.goxelSize)*294-((byte)World.goxelSize)*147)/1000)); //294 = bars per km of basalt pressure per cubic meter)
+          goxels[g].pressure = ((byte)((g*((byte)World.goxelSize)*294-((byte)World.goxelSize)*147)/1000)); //294 = bars per km of basalt pressure per cubic meter)
       }
     }
     
@@ -72,4 +74,5 @@ public class Column  implements Serializable{
         mass = (short)(sumMass/denominator);
         density = mass / (float)(goxels.length);
     }
+    
 }

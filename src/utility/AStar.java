@@ -49,7 +49,7 @@ public class AStar {
             openSet.remove(current);
             closedSet.add(current);
 
-            for (Coord neighbor : getNeighbors(current)) {
+            for (Coord neighbor : Wrap.getNeighbors(current)) {
                 if (closedSet.contains(neighbor)) {
                     continue;
                 }
@@ -70,18 +70,6 @@ public class AStar {
             }
         }
         return null;
-    }
-
-    private ArrayList<Coord> getNeighbors(Coord center) {
-        ArrayList<Coord> neighbors = new ArrayList<Coord>();
-        for (short x = (short) (center.xCoord - 1); x < center.xCoord + 2; x++) {
-            for (short y = (short) (center.yCoord - 1); y < center.yCoord + 2; y++) {
-                Coord temp = new Coord(x, y);
-                Wrap.fix(temp);
-                neighbors.add(temp);
-            }
-        }
-        return neighbors;
     }
 
     private ArrayList<Coord> reconstructPath(HashMap<Coord, Coord> cameFrom, Coord current) {

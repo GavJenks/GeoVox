@@ -1,0 +1,15 @@
+In mantle, litho goxel, AND dictionary, could use one thing, like a "rock" is an object that just stores all the info about minerals and junk.
+Upside, tidier organization. And one place to put all the redundant methods, ability to do math like averaging rocks easily.
+Downside, +12 bytes per litho goxel, minimum, and if rock contains mineral objects, + a completely unacceptable 72!
+
+minerals could still be relocated to that rock object, but should still use the primitive format
+
+
+mineral substitutions:
+most commonly stored as 4 bits mineral GROUP, 5 bits substitution mixture, 7 bits percent this GROUP contributes to whole goxel.
+element formula etc. stored only in rock dictionary, including rares. Thus, a solid rock entirely minerals need not have rares int.
+
+define "mineral" as mineral group:
+[GroupName],[type # for igneous, metamorphic, more than one, etc.],[# of substitution variants 1-3],
+then 1-3 times repeating the following:
+[endMember Name],[Melting point short],[Something about density??],[24 numbers for how many atoms of each element including rares]

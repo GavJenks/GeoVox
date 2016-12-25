@@ -40,4 +40,37 @@ public class Plate  implements Serializable{
         }
         memberMap[address] = temp;
     }
+    public void runThermo(){
+        //set up storage of initial state so I can change temps afterward without changing what the next column is using as a reference point
+        short[][][] tempTemps = new short[World.xSize][World.ySize][];
+        for (short x = 0;x < World.xSize; x++){
+            for (short y = 0; y < World.ySize; y++){
+                if (isMember(x,y)){
+                    Column tempColumn = World.columnMap.get(World.columns[x][y]);
+                    short[] tempTempAdd = new short[tempColumn.goxels.length];
+                    tempTemps[x][y] = tempTempAdd;
+                    for (int g = 0; g < tempColumn.goxels.length; g++){
+                        tempTemps[x][y][g] = tempColumn.goxels[g].temperature;
+                    }
+                }
+            }
+        }
+        
+        //Heat flow between each goxel and its neighbors
+            //If bottom (no goxel neighbors below only, ignore sides for now): Heat flow between mantle and bottom goxels
+            //If top (no goxel neighbors above only): Heat flow between each goxel and the atmosphere
+                //Surface goxel radiation
+        //Atmospheric radiation
+        //Mantle decay new heat generation
+        
+        //Notes:
+        //Heat flow was about 3x todays 4 billion BC, 2x today's 2.5 billion BC. This should translate to convection speed and everything speed as well.
+        //see image in folder for good curve to use for earth. For other size planets just divide by mass and spread the terawatts out evenly,. Or chet for earthlike look.
+        //internal heat flow is 0.03% of solar radiation today
+        //4 billion BC, surface temp was about what it is today.
+        //on earth, convecting mantle is ~3,000km thick and 84% of volume of the planet, so tiny portions of elements can equal huge % in the thin crust.
+        //the atmosphere today cuts down about 80% of what would be radiated off otherwise. The moon loses 300 C in 2 hours by comparison during eclipse.
+        //greenhouse gases are easy to look up and calculate insulation of the atmosphere for different chemical compsitions in the model.
+        //it works because sunlight has a lot of visible which gas is transparent to, but radiant emissive energy is in IR which these gases are opaque to.
+    }
 }

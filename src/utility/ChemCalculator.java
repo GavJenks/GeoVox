@@ -47,4 +47,6 @@ public class ChemCalculator {
     public static byte[] byMassFromMinerals(Rock rock) {
         return byMassFromMinerals(rock.getMinerals(), rock.getFractions());
     }
+    
+    
 }

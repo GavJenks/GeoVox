@@ -1,43 +1,41 @@
 % <-- This makes a comment line. Empty lines are also ignored.
-% Format is [name of element, one word],[atomic mass],[percent portion of the "crust"],% [chemical series],[1 for primary, 0 for rare]
-% Percent doesn't have to add up to 100, the program will rescale it for you.
-% if two elements share a series (simply have the same number here), they can swap in 
-% crystal structures and other implications. Start with 1 and go up unless sharing a series already written.
+% Format is [name of element, one word],[atomic mass as integer],
+%[percent portion of the primitive MANTLE]
+% Percent doesn't have to add up to 100 precisely, just get close.
 % You have UP TO EIGHT primary elements, flagged with a 1 parameter at the end.
 % You have UP TO SIXTEEN rare elements as well, flagged with a 0 parameter at the end.
 % Primary elements participate in mineral and rock chemistry during simulation, affecting erosion, magma, etc. While
-% rare elements are tracked in a loose "bag" of elements that can form minerals still, but the elements and minerals do not % significantly interact with the world until the end of the simulation, for gems, etc.
+% rare elements are tracked in a loose "bag" of elements that can form minerals still, but the elements and minerals do not 
+% significantly interact with the world until the end of the simulation, for gems, etc.
 % For rares, it's better to choose elements relevant to your final game or use case, such as strategic metals, not
 % necessarily elements in order of exact abundance.
 
 % Top 8:
 
-Oxygen,16,46,1
-Silicon,28,27,1
-Aluminum,27,8.2,1
-Iron,56,6.3,1
-Calcium,40,5,1
-Magnesium,24,2.9,1
-Sodium,23,2.3,1
-Potassium,39,1.5,1
+Oxygen,16,44.33
+Silicon,28,21.22
+Aluminum,27,2.38
+Iron,56,6.3
+Calcium,40,2.61
+Magnesium,24,22.17
+Sodium,23,0.26
+Potassium,39,
 
 % 16 Rares:
 
-Titanium,48,0.66,0
-Carbon,12,0.18,0
-Phosphorus,31,0.1,0
-Manganese,55,0.11,0
-Fluorine,19,0.054,0
-Barium,137,0.034,0
-Sulfur,32,0.042,0
-Nickel,59,0.009,0
-Zinc,65,0.0079,0
-Copper,64,0.0068,0
-Lead,207,0.001,0
-Tin,119,0.00022,0
-Uranium,238,0.00018,0
-Silver,108,0.000008,0
-Mercury,201,0.0000067,0
-Gold,197,0.00000031,0
-
-
+Titanium,48,0.66
+Carbon,12,0.18
+Phosphorus,31,0.1
+Manganese,55,0.11
+Fluorine,19,0.054
+Barium,137,0.034
+Sulfur,32,0.042
+Nickel,59,0.009
+Zinc,65,0.0079
+Copper,64,0.0068
+Lead,207,0.001
+Tin,119,0.00022
+Uranium,238,0.00018
+Silver,108,0.000008
+Mercury,201,0.0000067
+Gold,197,0.00000031
